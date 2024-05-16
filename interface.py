@@ -1,4 +1,6 @@
 import gradio as gr
+import solutions
+import importlib
 
 css = """
 h1 {
@@ -10,7 +12,13 @@ h1 {
 with gr.Blocks(css=css) as interface:
     with gr.Row():
           gr.Markdown('# Euler Project Solutions')
-    with gr.Accordion('Basic'):
-            gr.Textbox('Teste', show_label=False)
 
+    for module in solutions.__all__:
+      mod = importlib.import_module(solutions.__name__ + '.' + module)
+      name, problem, answer = getattr(mod, 'answer')()
+
+      with gr.Accordion(name, open=False):
+            gr.Textbox(problem, show_label=False)
+            gr.Markdown('Resposta : ' + answer)
+    
 interface.launch()

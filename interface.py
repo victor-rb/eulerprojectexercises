@@ -18,7 +18,7 @@ with gr.Blocks(css=css) as interface:
       name, problem, answer = getattr(mod, 'answer')()
 
       with gr.Accordion(name, open=False):
-            gr.TextArea(problem, show_label=False)
+            gr.HTML(problem, show_label=False)
             gr.Markdown('Resposta : ' + answer)
     
 interface.launch()

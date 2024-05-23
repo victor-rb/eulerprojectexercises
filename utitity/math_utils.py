@@ -16,3 +16,10 @@ def is_prime( number ):
         factor += 6
     
     return True
+
+def is_divisible_by_all ( number, div_ceil):
+
+    for div in range(1 , div_ceil):
+        if number % div != 0:
+            return False
+    return True

@@ -1,6 +1,6 @@
 from utitity import page_utils as pu
 
-_name , _problem = pu.scrap_problem('https://projecteuler.net/problem=1')
+_name ,_info, _problem = pu.scrap_problem('https://projecteuler.net/problem=1')
 
 def answer() :
     _max = 1000
@@ -10,4 +10,4 @@ def answer() :
         if seq % 3 == 0 or seq % 5 ==0 :
             _total += seq
 
-    return _name, _problem, str(_total)
+    return _name, _info, _problem, str(_total)

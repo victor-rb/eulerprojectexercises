@@ -1,7 +1,7 @@
 from utitity import page_utils as pu
 from utitity import math_utils as mu
 
-_name , _problem = pu.scrap_problem('https://projecteuler.net/problem=3')
+_name ,_info, _problem = pu.scrap_problem('https://projecteuler.net/problem=3')
 
 def answer():
     _total = 0
@@ -15,4 +15,4 @@ def answer():
             _total = _prime_factor
         _prime_factor += 2
                 
-    return _name, _problem, str(_total)
+    return _name, _info, _problem, str(_total)

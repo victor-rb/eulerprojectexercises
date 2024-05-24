@@ -1,6 +1,6 @@
 from utitity import page_utils as pu
 
-_name , _problem = pu.scrap_problem('https://projecteuler.net/problem=2')
+_name ,_info, _problem = pu.scrap_problem('https://projecteuler.net/problem=2')
 
 def answer() :
     _total = 2
@@ -15,4 +15,4 @@ def answer() :
         if(_res % 2 == 0):
             _total += _res
     
-    return _name, _problem, str(_total)
+    return _name, _info, _problem, str(_total)

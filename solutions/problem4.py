@@ -1,7 +1,7 @@
 from utitity import page_utils as pu
 from utitity import text_utils as tu
 
-_name , _problem = pu.scrap_problem('https://projecteuler.net/problem=4')
+_name ,_info, _problem = pu.scrap_problem('https://projecteuler.net/problem=4')
 
 def answer() :
 
@@ -13,4 +13,4 @@ def answer() :
             if tu.is_palindrome(str(result)) and result > _total:
                 _total = result
                 
-    return _name, _problem, str(_total)
+    return _name, _info, _problem, str(_total)

@@ -2,6 +2,7 @@ import gradio as gr
 import solutions
 import importlib
 
+from utitity import page_utils as pu
 css = """
 h1 {
     text-align: center;
@@ -15,10 +16,14 @@ with gr.Blocks(css=css) as interface:
 
     for module in solutions.__all__:
       mod = importlib.import_module(solutions.__name__ + '.' + module)
-      name, problem, answer = getattr(mod, 'answer')()
+      result = pu.execution_time(getattr(mod, 'answer'))
 
-      with gr.Accordion(name, open=False):
-            gr.TextArea(problem, show_label=False)
+      exec_time = result[0]
+      name, info, problem, answer = result[1]
+
+      with gr.Accordion(f"{info} - {name}", open=False):
+            gr.Markdown(exec_time)
+            gr.HTML(problem, show_label=False)
             gr.Markdown('Resposta : ' + answer)
     
 interface.launch()

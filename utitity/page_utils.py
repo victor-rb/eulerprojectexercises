@@ -33,6 +33,8 @@ def format_text( text ):
         text = text.replace('\\times', 'X')
     if '\\dots' in text:
         text = text.replace('\\dots', '...')
+    if '\\,' in text:
+        text = text.replace('\\,', '')
     
     return text
 

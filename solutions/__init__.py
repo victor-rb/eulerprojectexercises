@@ -5,4 +5,6 @@ __all__ = [
     'problem4',
     'problem5',
     'problem6',
+    'problem7',
+    'problem8'
 ]

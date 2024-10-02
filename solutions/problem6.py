@@ -1,7 +1,7 @@
 from utitity import page_utils as pu
 from utitity import math_utils as mu
 
-_name ,_info, _problem = pu.scrap_problem('https://projecteuler.net/problem=6')
+name ,info, problem = pu.scrap_problem('https://projecteuler.net/problem=6')
 
 def answer() :
     _total = 0
@@ -17,4 +17,4 @@ def answer() :
 
     _total = square_of_the_sum - sum_of_square
 
-    return _name, _info, _problem, str(_total)
+    return str(_total)

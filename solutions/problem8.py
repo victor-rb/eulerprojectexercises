@@ -1,6 +1,6 @@
 from utitity import page_utils as pu
 
-_name ,_info, _problem = pu.scrap_problem('https://projecteuler.net/problem=8')
+name ,info, problem = pu.scrap_problem('https://projecteuler.net/problem=8')
 
 _thousand_digit_number = """73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -44,4 +44,4 @@ def answer() :
         index+=1
 
 
-    return _name, _info, _problem, str(_total)
+    return str(_total)

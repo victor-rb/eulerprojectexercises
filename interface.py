@@ -1,40 +1,47 @@
 import gradio as gr
-from gradio.themes.builder_app import text_size
-from matplotlib.pyplot import title
-
+import importlib as IL
+import utitity.page_utils as PU
+import utitity.text_utils as TU
 import solutions
-import importlib
 
-from utitity import page_utils as pu
-css = """
-h1 {
-    text-align: center;
-    display:block;
-    style="font-size:50px;
-}
-textarea{
-    font-size: 40px;
-}
-
-"""
-
-def on_calculate():
-    result = pu.execution_time(getattr(mod, 'answer'))
-    return f"{result[1]}    :    Exec. Time ({result[0]})"
+_prob_names = solutions.__all__
 
 
-with gr.Blocks(css=css) as interface:
+def on_change(index):
+    index = TU.de_format(index)
+    mod = IL.import_module(solutions.__name__ + '.' + index)
+    execution = PU.execution_time(getattr(mod, 'answer'))
+    name = mod.name
+    info = mod.info
+    prob = mod.problem
+    exec_time = execution[0]
+    answer = execution[1]
+
+    return name, info, prob, answer, exec_time
+
+with gr.Blocks() as interface:
     with gr.Row():
-        gr.Markdown('# Euler Project Solutions')
+        with gr.Column(scale=1):
+            radio = gr.Radio(TU.name_format(_prob_names), label="Problems", value='Problem 1')
+        with gr.Column(scale=4):
+            with gr.Row():
+                values = on_change('problem1')
+                output_info = gr.Label(label='Problem', value=values[1])
+                output_name = gr.Label(label='Problem Title', value=values[0])
+            with gr.Row():
+                output_problem = gr.Label(label='Description', value=values[2])
+            with gr.Row():
+                output_answer = gr.Label(label='Result', value=values[3])
+                output_exec = gr.Label(label='Execution Time', value=values[4])
 
-    for module in solutions.__all__:
-        mod = importlib.import_module(solutions.__name__ + '.' + module)
 
-        with gr.Accordion(f"{mod.info} - {mod.name}", open=False):
-            gr.HTML(mod.problem, show_label=False)
-            output = gr.Textbox(label="Answer")
+        radio.select(on_change, inputs=radio, outputs=[
+            output_name, output_info, output_problem, output_exec, output_answer
+        ])
 
-            trigger_button = gr.Button("Calculate", size="sm", scale=0)
-            trigger_button.click(on_calculate, inputs=None, outputs=output)
+
+
+
+
 
 interface.launch()

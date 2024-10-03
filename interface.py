@@ -1,5 +1,8 @@
 import gradio as gr
 import importlib as IL
+
+from PIL.ImageOps import scale
+
 import utitity.page_utils as PU
 import utitity.text_utils as TU
 import solutions
@@ -20,6 +23,8 @@ def on_change(index):
     return name, info, prob, answer, exec_time
 
 with gr.Blocks() as interface:
+    with gr.Row():
+        gr.Markdown(value='Euler Project')
     with gr.Row():
         with gr.Column(scale=1):
             radio = gr.Radio(TU.name_format(_prob_names), label="Problems", value='Problem 1')

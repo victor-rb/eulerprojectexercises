@@ -22,7 +22,7 @@ def on_change(index):
 
     return name, info, prob, answer, exec_time
 
-with gr.Blocks() as interface:
+with gr.Blocks() as demo:
     with gr.Row():
         gr.Markdown(value='Euler Project')
     with gr.Row():
@@ -49,4 +49,4 @@ with gr.Blocks() as interface:
 
 
 
-interface.launch()
+demo.launch()

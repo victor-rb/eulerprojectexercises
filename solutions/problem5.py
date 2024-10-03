@@ -7,10 +7,17 @@ def answer() :
 
     _total = 20
 
-    while True:
-        if mu.is_divisible_by_all(_total, 20):
-            break
-        else:
-            _total += 20
+    primes = [x for x in range(2, _total + 1) if mu.is_prime(x)]
+    factors = {prime: 1 for prime in primes}
 
-    return str(_total)
+    for x in range(2, _total + 1):
+        for prime, count in mu.prime_factors(x, primes).items():
+            factors[prime] = max(count, factors[prime])
+
+    result = 1
+
+    for prime, count in factors.items():
+        result *= prime ** count
+
+
+    return str(result)

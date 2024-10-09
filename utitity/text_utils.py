@@ -16,3 +16,13 @@ def name_format(list_name : list[str]):
 
 def de_format(name : str):
     return name.lower().replace(' ', '')
+
+def squared_grid_from_string (string : str, size):
+    grid = [([0] * size)] * size
+    num_array = string.split(' ')
+
+    for line in range(len(grid)):
+        start = line * size;
+        grid[line] = num_array[start: start + 20]
+
+    return grid

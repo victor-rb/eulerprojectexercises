@@ -1,5 +1,4 @@
 from utitity import page_utils as pu
-from utitity import math_utils as mu
 
 name ,info, problem = pu.scrap_problem('https://projecteuler.net/problem=6')
 

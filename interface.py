@@ -1,11 +1,10 @@
-import gradio as gr
 import importlib as IL
 
-from PIL.ImageOps import scale
+import gradio as gr
 
+import solutions
 import utitity.page_utils as PU
 import utitity.text_utils as TU
-import solutions
 
 _prob_names = solutions.__all__
 

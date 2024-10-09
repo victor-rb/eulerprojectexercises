@@ -1,7 +1,8 @@
-import requests
 import time
 
+import requests
 from bs4 import BeautifulSoup as bs
+
 
 def scrap_problem (_url) :
     try:
@@ -35,6 +36,8 @@ def format_text( text ):
         text = text.replace('\\dots', '...')
     if '\\,' in text:
         text = text.replace('\\,', '')
+    if '\\lt' in text:
+        text = text.replace('\\lt', '')
     
     return text
 

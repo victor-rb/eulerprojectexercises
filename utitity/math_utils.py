@@ -1,11 +1,20 @@
-from math import floor
+from math import sqrt
 
 
 def is_prime( number ):
+    if number <= 1:
+        return False
+    if number <= 3:
+        return True
+    if number % 2 == 0 or number % 3 == 0:
+        return False
 
-    for x in range(2, floor(number ** 0.5) + 1):
-        if number % x == 0:
+    i = 5
+
+    while i * i <= number:
+        if number % i == 0 or number % (i + 2) == 0:
             return False
+        i += 6
     return True
 
 def prime_factors(number, primes):
@@ -23,3 +32,7 @@ def is_divisible_by_all ( number, div_ceil):
         if number % div != 0:
             return False
     return True
+
+def is_pyth_triplets (a, b, c):
+    n_sum = (a * a) + (b * b)
+    return sqrt(n_sum) == c

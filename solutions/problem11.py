@@ -1,11 +1,15 @@
+from enum import show_flag_values
+
+from jinja2.lexer import TOKEN_LT
 from numpy.ma.core import maximum
 
 from utitity import page_utils as pu
 from utitity import text_utils as tu
 
+
 name ,info, problem = pu.scrap_problem('https://projecteuler.net/problem=11')
 
-string = ('08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08 49 49 99 40 17 81 18 57 60 87 17 40 98 43 '
+string = (    '08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08 49 49 99 40 17 81 18 57 60 87 17 40 98 43 '
               '69 48 04 56 62 00 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65 52 70 95 23 04 60 11 42 '
               '69 24 68 56 01 32 56 71 37 02 36 91 22 31 16 71 51 67 63 89 41 92 36 54 22 40 40 28 66 33 13 80 24 47 '
               '32 60 99 03 45 02 44 75 33 53 78 36 84 20 35 17 12 50 32 98 81 28 64 23 67 10 26 38 40 67 59 54 70 66 '
@@ -23,6 +27,32 @@ grid = tu.squared_grid_from_string( string,20)
 def answer() :
     _total = 0
 
+    for row in range(20):
+        for col in range(17):
+            horizontal = 1
+            for i in range(4):
+                horizontal *= grid[row][col + i]
+            _total = max(_total, horizontal)
 
+    for row in range(17):
+        for col in range(20):
+            vertical = 1
+            for i in range(4):
+                vertical *= grid[row + i][col]
+            _total = max(_total, vertical)
+
+    for row in range(17):
+        for col in range(17):
+            diagonal = 1
+            for i in range(4):
+                diagonal *= grid[row + i][col + i]
+            _total = max(_total, diagonal)
+
+    for row in range(4, 17):
+        for col in range(20):
+            rev_diagonal = 1
+            for i in range(4):
+                rev_diagonal *= grid[row + i][col - i]
+            _total = max(_total, rev_diagonal)
 
     return str(_total)

@@ -23,6 +23,12 @@ def squared_grid_from_string (string : str, size):
 
     for line in range(len(grid)):
         start = line * size;
-        grid[line] = num_array[start: start + 20]
+        grid[line] = to_int(num_array[start: start + 20])
 
     return grid
+
+def to_int (str_list : list[str]):
+    array = []
+    for i in str_list:
+        array.append(int(i))
+    return array
